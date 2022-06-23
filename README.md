@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+Invicara Coding Excercise:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+User Interface
 
-In the project directory, you can run:
+1. 
+-->The landing will be having a navbar in which login and register options will be available.
+-->Clicking on login or register options will open a popup where user can enter the details.
+-->Once user is logged into the system, It will be showing list of workstations.
+-->Workstation details:- 
+	Each workstation will be having following details
 
-### `npm start`
+	1.Indicator which can be green(Available) or red(Not Available) 
+	2.book workstation button.
+	3.Next Available time slot.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+REST API 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+4. 
+Method: GET
+/api/workstation/id
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+--> We will be passing the workstation id through which we will be able to search that particular 
+workstation details in the system. Then we can query for the next available slots for that particular system.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+5.
+Method: PUT
+/api/workstation/id
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+body
+      {
+	useremail: string,
+	booked_at: Date,
+	booked_till: Date
+	current_reserved_status: boolean
+      }
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+--> We will be passing the workstation id through which we will be able to search that particular 
+workstation details in the system. Once we got the workstation we can update the fields of that system with the body values of the request.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Data Persistence
 
-### Code Splitting
+6.
+User
+email: string
+password: string
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Workstation
+id: string,
+desk_number: string,
+current_reserved_status: boolean,
+booked_slots: [time: Date],
+next_available_slot: Date,
+users: [
+  {
+	useremail: string,
+	booked_at: Date,
+	booked_till: Date	
+  }
+],
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+7.
+Do we need to add authentication and authorization module for protecting certain routes?
+Do we need to create Roles for the user to access certain routes?
 
-### Advanced Configuration
+ 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
